@@ -2,10 +2,11 @@ package main
 
 import (
 	"github.com/prometheus/client_golang/prometheus"
+	log "github.com/sirupsen/logrus"
+
 	"github.com/sapcc/bird_exporter/client"
 	"github.com/sapcc/bird_exporter/metrics"
 	"github.com/sapcc/bird_exporter/protocol"
-	log "github.com/sirupsen/logrus"
 )
 
 type MetricCollector struct {
@@ -78,13 +79,12 @@ func exportersForDefault(c *client.BirdClient, descriptionLabels bool) map[proto
 
 var socketQueryDesc = prometheus.NewDesc(
 	"bird_socket_query_success",
-	"Result of querying bird socket: 0 = failed, 1 = suceeded",
+	"Result of querying bird socket: 0 = failed, 1 = succeeded",
 	nil,
 	nil,
 )
 
 func (m *MetricCollector) Describe(ch chan<- *prometheus.Desc) {
-
 	ch <- socketQueryDesc
 
 	for _, v := range m.exporters {
@@ -95,7 +95,6 @@ func (m *MetricCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (m *MetricCollector) Collect(ch chan<- prometheus.Metric) {
-
 	protocols, err := m.client.GetProtocols()
 
 	var queryResult float64 = 1
@@ -110,7 +109,7 @@ func (m *MetricCollector) Collect(ch chan<- prometheus.Metric) {
 	}
 
 	for _, p := range protocols {
-		if p.Proto == protocol.PROTO_UNKNOWN || (m.enabledProtocols&p.Proto != p.Proto) {
+		if p.Proto == protocol.ProtoUnknown || (m.enabledProtocols&p.Proto != p.Proto) {
 			continue
 		}
 

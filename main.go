@@ -5,11 +5,13 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/sapcc/bird_exporter/protocol"
 	log "github.com/sirupsen/logrus"
+
+	"github.com/sapcc/bird_exporter/protocol"
 )
 
 const version string = "1.4.3"
@@ -73,26 +75,38 @@ func startServer() {
 		log.Info("INFO: You are using the old metric format. Please consider using the new (more convenient one) by setting -format.new=true.")
 	}
 
-	http.HandleFunc("/", func(w http.ResponseWriter, _ *http.Request) {
-		w.Write([]byte(`<html>
-			<head><title>Bird Routing Daemon Exporter (Version ` + version + `)</title></head>
-			<body>
-			<h1>Bird Routing Daemon Exporter</h1>
-			<p><a href="` + *metricsPath + `">Metrics</a></p>
-			<h2>More information:</h2>
-			<p><a href="https://github.com/sapcc/bird_exporter">github.com/sapcc/bird_exporter</a></p>
-			</body>
-			</html>`))
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", func(w http.ResponseWriter, _ *http.Request) {
+		_, err := w.Write([]byte(`<html>
+   <head><title>Bird Routing Daemon Exporter (Version ` + version + `)</title></head>
+   <body>
+   <h1>Bird Routing Daemon Exporter</h1>
+   <p><a href="` + *metricsPath + `">Metrics</a></p>
+   <h2>More information:</h2>
+   <p><a href="https://github.com/sapcc/bird_exporter">github.com/sapcc/bird_exporter</a></p>
+   </body>
+   </html>`))
+		if err != nil {
+			return
+		}
 	})
-	http.HandleFunc(*metricsPath, handleMetricsRequest)
+	mux.HandleFunc(*metricsPath, handleMetricsRequest)
 
 	log.Infof("Listening for %s on %s (TLS: %v)", *metricsPath, *listenAddress, *tlsEnabled)
+
+	server := &http.Server{
+		Addr:         *listenAddress,
+		Handler:      nil,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  15 * time.Second,
+	}
 	if *tlsEnabled {
-		log.Fatal(http.ListenAndServeTLS(*listenAddress, *tlsCertChainPath, *tlsKeyPath, nil))
+		log.Fatal(server.ListenAndServeTLS(*tlsCertChainPath, *tlsKeyPath))
 		return
 	}
 
-	log.Fatal(http.ListenAndServe(*listenAddress, nil))
+	log.Fatal(server.ListenAndServe())
 }
 
 func handleMetricsRequest(w http.ResponseWriter, r *http.Request) {

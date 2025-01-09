@@ -3,8 +3,9 @@ package metrics
 import (
 	"testing"
 
-	"github.com/sapcc/bird_exporter/protocol"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/sapcc/bird_exporter/protocol"
 )
 
 func TestLabelNames(t *testing.T) {

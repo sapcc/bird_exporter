@@ -13,9 +13,7 @@ var (
 )
 
 func init() {
-	nowFunc = func() time.Time {
-		return time.Now()
-	}
+	nowFunc = time.Now
 }
 
 func overrideNowFunc(f func() time.Time) {
@@ -49,7 +47,7 @@ func parseFloat(value string) float64 {
 }
 
 func parseUptimeForIso(s string) int {
-	start, err := time.ParseInLocation("2006-01-02 15:04:05", s, time.Local)
+	start, err := time.ParseInLocation(time.DateTime, s, time.Local)
 	if err != nil {
 		log.Errorln(err)
 		return 0

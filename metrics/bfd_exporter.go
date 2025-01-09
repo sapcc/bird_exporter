@@ -2,9 +2,10 @@ package metrics
 
 import (
 	"github.com/prometheus/client_golang/prometheus"
+	log "github.com/sirupsen/logrus"
+
 	"github.com/sapcc/bird_exporter/client"
 	"github.com/sapcc/bird_exporter/protocol"
-	log "github.com/sirupsen/logrus"
 )
 
 var (

@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/czerwonk/testutils/assert"
+
 	"github.com/sapcc/bird_exporter/protocol"
 )
 
@@ -88,7 +89,7 @@ func TestActiveBGP(t *testing.T) {
 	assert.IntEqual("imported", 0, int(x.Imported), t)
 	assert.IntEqual("exported", 0, int(x.Exported), t)
 	assert.StringEqual("ipVersion", "4", x.IPVersion, t)
-	assert.IntEqual("uptime", 0, int(x.Uptime), t)
+	assert.IntEqual("uptime", 0, x.Uptime, t)
 }
 
 func Test2BGPSessions(t *testing.T) {

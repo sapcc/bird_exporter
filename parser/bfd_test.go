@@ -4,8 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sapcc/bird_exporter/protocol"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/sapcc/bird_exporter/protocol"
 )
 
 func TestParseBFDSessions(t *testing.T) {

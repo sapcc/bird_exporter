@@ -45,9 +45,9 @@ func parseBFDSessionLine(c *bfdContext) {
 	if m == nil {
 		return
 	}
-	var since_epoch int64
+	var sinceEpoch int64
 	if m[5] != "" {
-		since_epoch = parseInt(m[5])
+		sinceEpoch = parseInt(m[5])
 	}
 
 	sess := protocol.BFDSession{
@@ -55,7 +55,7 @@ func parseBFDSessionLine(c *bfdContext) {
 		IP:           m[1],
 		Interface:    m[2],
 		Since:        parseUptime(m[4]),
-		SinceEpoch:   since_epoch,
+		SinceEpoch:   sinceEpoch,
 		Interval:     parseFloat(m[6]),
 		Timeout:      parseFloat(m[7]),
 	}

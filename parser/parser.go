@@ -130,7 +130,7 @@ func parseProto(val string) protocol.Proto {
 		return protocol.BFD
 	}
 
-	return protocol.PROTO_UNKNOWN
+	return protocol.ProtoUnknown
 }
 
 func parseState(state string) int {
@@ -148,11 +148,11 @@ func parseUptime(value string) int {
 		return 0
 	}
 
-	if len(match[1]) > 0 {
+	if match[1] != "" {
 		return parseUptimeForDuration(match)
 	}
 
-	if len(match[5]) > 0 {
+	if match[5] != "" {
 		return parseUptimeForTimestamp(value)
 	}
 
@@ -169,7 +169,7 @@ func parseLineForChannel(c *context) {
 		return
 	}
 
-	if len(c.current.IPVersion) == 0 {
+	if c.current.IPVersion == "" {
 		c.current.IPVersion = channel[1]
 	} else {
 		c.current = &protocol.Protocol{
@@ -195,15 +195,28 @@ func parseLineForRoutes(c *context) {
 		return
 	}
 
-	c.current.Imported, _ = strconv.ParseInt(match[1], 10, 64)
-	c.current.Exported, _ = strconv.ParseInt(match[3], 10, 64)
-
-	if len(match[2]) > 0 {
-		c.current.Filtered, _ = strconv.ParseInt(match[2], 10, 64)
+	var err error
+	c.current.Imported, err = strconv.ParseInt(match[1], 10, 64)
+	if err != nil {
+		return
+	}
+	c.current.Exported, err = strconv.ParseInt(match[3], 10, 64)
+	if err != nil {
+		return
 	}
 
-	if len(match[4]) > 0 {
-		c.current.Preferred, _ = strconv.ParseInt(match[4], 10, 64)
+	if match[2] != "" {
+		c.current.Filtered, err = strconv.ParseInt(match[2], 10, 64)
+		if err != nil {
+			return
+		}
+	}
+
+	if match[4] != "" {
+		c.current.Preferred, err = strconv.ParseInt(match[4], 10, 64)
+		if err != nil {
+			return
+		}
 	}
 
 	c.handled = true

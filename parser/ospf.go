@@ -23,8 +23,8 @@ type ospfContext struct {
 
 func init() {
 	ospf = &ospfRegex{
-		area:     regexp.MustCompile("Area: [^\\s]+ \\(([^\\s]+)\\)"),
-		counters: regexp.MustCompile("Number of ([^:]+):\\s*(\\d+)"),
+		area:     regexp.MustCompile(`Area: [^\s]+ \(([^\s]+)\)`),
+		counters: regexp.MustCompile(`Number of ([^:]+):\s*(\d+)`),
 	}
 }
 

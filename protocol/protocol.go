@@ -1,15 +1,15 @@
 package protocol
 
 const (
-	PROTO_UNKNOWN = Proto(0)
-	BGP           = Proto(1)
-	OSPF          = Proto(2)
-	Kernel        = Proto(4)
-	Static        = Proto(8)
-	Direct        = Proto(16)
-	Babel         = Proto(32)
-	RPKI          = Proto(64)
-	BFD           = Proto(128)
+	ProtoUnknown = Proto(0)
+	BGP          = Proto(1)
+	OSPF         = Proto(2)
+	Kernel       = Proto(4)
+	Static       = Proto(8)
+	Direct       = Proto(16)
+	Babel        = Proto(32)
+	RPKI         = Proto(64)
+	BFD          = Proto(128)
 )
 
 type Proto int

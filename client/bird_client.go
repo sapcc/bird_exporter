@@ -1,9 +1,8 @@
 package client
 
 import (
-	"fmt"
-
 	birdsocket "github.com/czerwonk/bird_socket"
+
 	"github.com/sapcc/bird_exporter/parser"
 	"github.com/sapcc/bird_exporter/protocol"
 )
@@ -43,7 +42,7 @@ func (c *BirdClient) GetProtocols() ([]*protocol.Protocol, error) {
 // GetOSPFAreas retrieves OSPF specific information from bird
 func (c *BirdClient) GetOSPFAreas(protocol *protocol.Protocol) ([]*protocol.OSPFArea, error) {
 	sock := c.socketFor(protocol.IPVersion)
-	b, err := birdsocket.Query(sock, fmt.Sprintf("show ospf %s", protocol.Name))
+	b, err := birdsocket.Query(sock, "show ospf "+protocol.Name)
 	if err != nil {
 		return nil, err
 	}
@@ -54,7 +53,7 @@ func (c *BirdClient) GetOSPFAreas(protocol *protocol.Protocol) ([]*protocol.OSPF
 // GetBFDSessions retrieves BFD specific information from bird
 func (c *BirdClient) GetBFDSessions(protocol *protocol.Protocol) ([]*protocol.BFDSession, error) {
 	sock := c.socketFor(protocol.IPVersion)
-	b, err := birdsocket.Query(sock, fmt.Sprintf("show bfd sessions %s", protocol.Name))
+	b, err := birdsocket.Query(sock, "show bfd sessions "+protocol.Name)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +77,7 @@ func (c *BirdClient) protocolsFromBird(ipVersions []string) ([]*protocol.Protoco
 	return protocols, nil
 }
 
-func (c *BirdClient) protocolsFromSocket(socketPath string, ipVersion string) ([]*protocol.Protocol, error) {
+func (c *BirdClient) protocolsFromSocket(socketPath, ipVersion string) ([]*protocol.Protocol, error) {
 	b, err := birdsocket.Query(socketPath, "show protocols all")
 	if err != nil {
 		return nil, err
