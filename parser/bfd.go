@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/czerwonk/bird_exporter/protocol"
+	"github.com/sapcc/bird_exporter/protocol"
 )
 
 var (

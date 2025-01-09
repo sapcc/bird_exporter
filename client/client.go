@@ -1,6 +1,6 @@
 package client
 
-import "github.com/czerwonk/bird_exporter/protocol"
+import "github.com/sapcc/bird_exporter/protocol"
 
 // Client retrieves information from Bird routing daemon
 type Client interface {

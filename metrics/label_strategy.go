@@ -1,6 +1,6 @@
 package metrics
 
-import "github.com/czerwonk/bird_exporter/protocol"
+import "github.com/sapcc/bird_exporter/protocol"
 
 // LabelStrategy abstracts the label generation for protocol metrics
 type LabelStrategy interface {

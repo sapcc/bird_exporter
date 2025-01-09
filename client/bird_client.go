@@ -3,9 +3,9 @@ package client
 import (
 	"fmt"
 
-	"github.com/czerwonk/bird_exporter/parser"
-	"github.com/czerwonk/bird_exporter/protocol"
 	birdsocket "github.com/czerwonk/bird_socket"
+	"github.com/sapcc/bird_exporter/parser"
+	"github.com/sapcc/bird_exporter/protocol"
 )
 
 // BirdClient communicates with the bird socket to retrieve information

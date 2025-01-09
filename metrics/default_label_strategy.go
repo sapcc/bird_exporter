@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/czerwonk/bird_exporter/protocol"
+	"github.com/sapcc/bird_exporter/protocol"
 )
 
 // DefaultLabelStrategy defines the labels to add to an metric and its data retrieval method

@@ -1,8 +1,8 @@
 package metrics
 
 import (
-	"github.com/czerwonk/bird_exporter/protocol"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/sapcc/bird_exporter/protocol"
 )
 
 // GenericProtocolMetricExporter exports metrics retrieved from Bird routing daemon

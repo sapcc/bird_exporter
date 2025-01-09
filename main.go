@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/czerwonk/bird_exporter/protocol"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/sapcc/bird_exporter/protocol"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -80,7 +80,7 @@ func startServer() {
 			<h1>Bird Routing Daemon Exporter</h1>
 			<p><a href="` + *metricsPath + `">Metrics</a></p>
 			<h2>More information:</h2>
-			<p><a href="https://github.com/czerwonk/bird_exporter">github.com/czerwonk/bird_exporter</a></p>
+			<p><a href="https://github.com/sapcc/bird_exporter">github.com/sapcc/bird_exporter</a></p>
 			</body>
 			</html>`))
 	})

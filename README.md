@@ -1,7 +1,11 @@
 # bird_exporter
-[![Go Report Card](https://goreportcard.com/badge/github.com/czerwonk/bird_exporter)](https://goreportcard.com/report/github.com/czerwonk/bird_exporter)
+[![Go Report Card](https://goreportcard.com/badge/github.com/sapcc/bird_exporter)](https://goreportcard.com/report/github.com/sapcc/bird_exporter)
 
 Metric exporter for bird routing daemon to use with Prometheus.
+
+> [!NOTE]
+> This is a fork of [czerwonk/bird_exporter](https://github.com/czerwonk/bird_exporter)
+> to keep up with dependency updates.
 
 ## Remarks
 Since bird_exporter uses the bird unix sockets, bird has to be installed on the same machine as bird_exporter. Also the user executing bird_exporter must have permission to access the bird socket files.
@@ -52,7 +56,7 @@ In version 0.8 communication to bird changed to sockets. The default socket path
 
 ## Install
 ```
-go get -u github.com/czerwonk/bird_exporter
+go get -u github.com/sapcc/bird_exporter
 ```
 
 ## Usage
@@ -65,7 +69,7 @@ this sample dashboard was created by [openbsod](https://github.com/openbsod). Th
 
 [https://grafana.com/grafana/dashboards/5259-bird-rs/](https://grafana.com/grafana/dashboards/5259-bird-rs/)
 
-![alt text](https://github.com/czerwonk/bird_exporter/blob/master/grafana/img/bird_exporter.png)
+![alt text](https://github.com/sapcc/bird_exporter/blob/master/grafana/img/bird_exporter.png)
 
 ## Features
 * BGP session state

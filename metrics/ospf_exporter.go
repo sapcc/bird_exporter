@@ -1,9 +1,9 @@
 package metrics
 
 import (
-	"github.com/czerwonk/bird_exporter/client"
-	"github.com/czerwonk/bird_exporter/protocol"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/sapcc/bird_exporter/client"
+	"github.com/sapcc/bird_exporter/protocol"
 	log "github.com/sirupsen/logrus"
 )
 

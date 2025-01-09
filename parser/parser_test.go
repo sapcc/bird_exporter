@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/czerwonk/bird_exporter/protocol"
 	"github.com/czerwonk/testutils/assert"
+	"github.com/sapcc/bird_exporter/protocol"
 )
 
 func TestEstablishedBgpOldTimeFormat(t *testing.T) {
