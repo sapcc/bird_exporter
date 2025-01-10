@@ -4,6 +4,7 @@ WORKDIR /go/bird_exporter
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/bird_exporter
 
 FROM alpine:latest
+LABEL source_repository="https://github.com/sapcc/bird_exporter"
 RUN apk --no-cache add ca-certificates bash
 WORKDIR /app
 COPY --from=builder /go/bin/bird_exporter .

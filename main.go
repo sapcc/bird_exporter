@@ -96,7 +96,7 @@ func startServer() {
 
 	server := &http.Server{
 		Addr:         *listenAddress,
-		Handler:      nil,
+		Handler:      mux, // Set the mux as the handler
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
 		IdleTimeout:  15 * time.Second,
