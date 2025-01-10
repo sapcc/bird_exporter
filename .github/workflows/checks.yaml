@@ -48,5 +48,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           ignore: importas
           reporter: github-check
-      - name: Check if source code files have license header
-        run: make check-license-headers

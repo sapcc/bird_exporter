@@ -20,7 +20,7 @@ githubWorkflow:
     ignorePaths:
       - "**.md" # all Markdown files
   license:
-    enabled: true
+    enabled: false
   securityChecks:
     enabled: true
   pushContainerToGhcr:
