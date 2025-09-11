@@ -1,6 +1,6 @@
 module github.com/sapcc/bird_exporter
 
-go 1.24
+go 1.25
 
 require (
 	github.com/czerwonk/bird_socket v0.0.0-20230831050638-df62ae583e1d
