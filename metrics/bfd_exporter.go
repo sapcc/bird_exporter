@@ -29,8 +29,8 @@ type bfdMetricExporter struct {
 }
 
 // NewBFDExporter creates a new MetricExporter for BFD metrics
-func NewBFDExporter(client client.Client) MetricExporter {
-	return &bfdMetricExporter{client: client}
+func NewBFDExporter(c client.Client) MetricExporter {
+	return &bfdMetricExporter{client: c}
 }
 
 func (m *bfdMetricExporter) Describe(ch chan<- *prometheus.Desc) {
