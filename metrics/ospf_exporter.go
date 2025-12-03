@@ -21,12 +21,12 @@ type ospfMetricExporter struct {
 }
 
 // NewOSPFExporter creates a new MetricExporter for OSPF metrics
-func NewOSPFExporter(prefix string, client client.Client) MetricExporter {
+func NewOSPFExporter(prefix string, c client.Client) MetricExporter {
 	d := make(map[string]*ospfDesc)
 	d["4"] = getDesc(prefix + "ospf")
 	d["6"] = getDesc(prefix + "ospfv3")
 
-	return &ospfMetricExporter{descriptions: d, client: client}
+	return &ospfMetricExporter{descriptions: d, client: c}
 }
 
 func getDesc(prefix string) *ospfDesc {
