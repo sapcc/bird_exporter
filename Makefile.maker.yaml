@@ -38,3 +38,6 @@ renovate:
     - SchwarzM
     - xsen84
     - goerangudat
+
+license:
+  addHeaders: false
