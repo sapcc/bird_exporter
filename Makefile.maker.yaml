@@ -41,3 +41,7 @@ renovate:
 
 license:
   addHeaders: false
+  checkDependencies: false
+
+reuse:
+  enabled: false
